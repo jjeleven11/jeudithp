@@ -2,78 +2,84 @@
 
 def count_name(name)
 
-  i = 0;
+i = 0;
 
-    @journalistes.each do |object|
-    if (object.downcase.include?name)
-      i += 1
-    end
+  @journalistes.each do |object|
+  if (object.downcase.include?name)
+    i += 1
   end
-  return i
+end
+return i
 end
 
 def count_number()
 
-  i = 0;
-  @journalistes.each do |word|
-    word.each_char do |number|
-      if ("0".."9").include?(word[number])
-        i += 1
-      end
+i = 0;
+@journalistes.each do |word|
+  word.each_char do |number|
+    if ("0".."9").include?(word[number])
+      i += 1
     end
   end
+end
 
-  return i
+return i
 end
 
 def count_journalists()
-  len = @journalistes.length
+len = @journalistes.length
 end
 
 def perform()
 
-  puts "Il y a " + count_journalists().to_s + " journalistes dedans"
-  puts "Il y a " + count_number().to_s + " pseudo avec un nombre dedans"
-  puts "Il y a " + count_name("aude").to_s + " pseudo avec aude dedans"
-  puts "Il y a " + count_majs().to_s + " pseudo avec une majuscule dedans"
-  puts "Il y a " + count_maj().to_s + " pseudo qui commence par une maj"
-  puts "Il y a " + count_underscore().to_s + " pseudo qui ont un underscore"
+puts "Il y a " + count_journalists().to_s + " journalistes"
+puts "Il y a " + count_number().to_s + " noms avec un nombre dedans"
+puts "Il y a " + count_name("aude").to_s + " noms avec aude dedans"
+puts "Il y a " + count_maj().to_s + " noms qui commencencent par une maj"
+puts "Il y a " + count_majs().to_s + " noms avec maj"
+puts "Il y a " + count_underscore().to_s + " noms avec underscore"  
+puts tri()
 end
 
 def count_underscore()
-  i = 0;
-  @journalistes.each do |word|
-    word.each_char do |number|
-      if ("_").include?(word[number])
-        i += 1
-      end
+i = 0;
+@journalistes.each do |word|
+  word.each_char do |number|
+    if ("_").include?(word[number])
+      i += 1
     end
   end
-  return (i)
+end
+return (i)
 end
 
 def count_maj()
-    count = 0
-    @journalistes.each do |word|
-      if  ("A".."Z").include?(word[1])
-        count += 1
-      end
+  count = 0
+  @journalistes.each do |word|
+    if  ("A".."Z").include?(word[1])
+      count += 1
     end
+  end
 
-    return count
+  return count
+end
+
+def tri()
+new_array = @journalistes.sort_by { |word| word.downcase }
+return (new_array)
 end
 
 def count_majs()
-  i = 0;
-  @journalistes.each do |word|
-    word.each_char do |number|
-      if ("A".."Z").include?(word[number])
-        i += 1
-        break;
-      end
+i = 0;
+@journalistes.each do |word|
+  word.each_char do |number|
+    if ("A".."Z").include?(word[number])
+      i += 1
+      break;
     end
   end
-  return (i)
+end
+return (i)
 end
 
 perform()
